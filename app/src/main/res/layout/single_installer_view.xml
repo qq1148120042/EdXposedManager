@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ch.deletescape.lawnchair.views.SpringNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:overScrollMode="always">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:fillViewport="true"
+        app:cardBackgroundColor="?attr/list_download_item_color"
+        app:cardElevation="@dimen/card_elevation">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- framework title -->
+            <TextView
+                android:id="@+id/title_framework"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_marginHorizontal="?itemHorizontalPadding"
+                android:text="@string/nav_item_install"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- installer -->
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/chooser_installers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:minHeight="?listPreferredItemHeightSmall"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toStartOf="@+id/info_installer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_framework" />
+
+            <ImageView
+                android:id="@+id/info_installer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_info"
+                app:layout_constraintBottom_toBottomOf="@id/chooser_installers"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/chooser_installers" />
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/warning_unstable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/amber_500"
+                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/info_installer"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:drawableStart="@drawable/ic_warning"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/unstable_build"
+                    android:textAllCaps="true"
+                    android:textStyle="bold" />
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/warning_unofficial"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/amber_500"
+                app:cardCornerRadius="@dimen/card_corner_radius"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/warning_unstable"
+                tools:visibility="visible">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="8dp"
+                    android:drawableStart="@drawable/ic_warning"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="@string/unofficial_build"
+                    android:textAllCaps="true"
+                    android:textStyle="bold" />
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/btn_install"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/warning_unofficial"
+                android:layout_margin="4dp"
+                android:text="@string/install"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/warning_unofficial" />
+
+            <!-- uninstaller -->
+            <Spinner
+                android:id="@+id/chooser_uninstallers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:minHeight="?listPreferredItemHeightSmall"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toStartOf="@+id/info_uninstaller"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_install" />
+
+            <ImageView
+                android:id="@+id/info_uninstaller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="4dp"
+                android:padding="4dp"
+                android:src="@drawable/ic_info"
+                app:layout_constraintBottom_toBottomOf="@id/chooser_uninstallers"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/chooser_uninstallers" />
+
+            <Button
+                android:id="@+id/btn_uninstall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/uninstall"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/info_uninstaller"
+                tools:ignore="RtlHardcoded" />
+
+            <!-- notice -->
+            <TextView
+                android:id="@+id/title_info"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/info"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_uninstall"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/info_author"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:background="?selectableItemBackground"
+                android:drawableStart="@drawable/ic_person"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:minHeight="?listPreferredItemHeightSmall"
+                android:paddingHorizontal="16dp"
+                android:text="@string/download_author"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_info" />
+
+            <TextView
+                android:id="@+id/info_help"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:background="?selectableItemBackground"
+                android:drawableStart="@drawable/ic_help"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:minHeight="?listPreferredItemHeightSmall"
+                android:paddingHorizontal="16dp"
+                android:text="@string/support_xda"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/info_author" />
+
+            <TextView
+                android:id="@+id/info_update_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:background="?selectableItemBackground"
+                android:drawableStart="@drawable/ic_description"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:minHeight="?listPreferredItemHeightSmall"
+                android:paddingHorizontal="16dp"
+                android:text="@string/update_description"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/info_help" />
+
+            <!-- notice -->
+            <TextView
+                android:id="@+id/title_notice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@string/notice"
+                android:textAllCaps="true"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/info_update_description"
+                tools:ignore="RtlHardcoded" />
+
+            <TextView
+                android:id="@+id/notice"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:background="?selectableItemBackground"
+                android:drawableStart="@drawable/ic_info"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:minHeight="?listPreferredItemHeightSmall"
+                android:paddingHorizontal="16dp"
+                android:text="@string/update_description"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title_notice"
+                tools:text="@string/notice_content" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</ch.deletescape.lawnchair.views.SpringNestedScrollView>

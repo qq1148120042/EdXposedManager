@@ -1,0 +1,60 @@
+package org.ks.tool.manager;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceManager;
+
+import org.ks.tool.manager.repo.Module;
+import org.ks.tool.manager.util.PrefixedSharedPreferences;
+import org.ks.tool.manager.util.RepoLoader;
+
+import java.util.Map;
+import java.util.Objects;
+
+public class DownloadDetailsSettingsFragment extends BasePreferenceFragment {
+    private DownloadDetailsActivity mActivity;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mActivity = (DownloadDetailsActivity) context;
+    }
+
+    @Override
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        final Module module = mActivity.getModule();
+        if (module == null)
+            return;
+
+        final String packageName = module.packageName;
+
+        PreferenceManager prefManager = getPreferenceManager();
+        prefManager.setSharedPreferencesName("module_settings");
+        PrefixedSharedPreferences.injectToPreferenceManager(prefManager, module.packageName);
+        addPreferencesFromResource(R.xml.module_prefs);
+
+        SharedPreferences prefs = requireActivity().getSharedPreferences("module_settings", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        if (prefs.getBoolean("no_global", true)) {
+            for (Map.Entry<String, ?> k : prefs.getAll().entrySet()) {
+                if (Objects.requireNonNull(prefs.getString(k.getKey(), "")).equals("global")) {
+                    editor.putString(k.getKey(), "").apply();
+                }
+            }
+
+            editor.putBoolean("no_global", false).apply();
+        }
+
+        Preference pref = findPreference("release_type");
+        Objects.requireNonNull(pref).setOnPreferenceChangeListener(
+                (preference, newValue) -> {
+                    RepoLoader.getInstance().setReleaseTypeLocal(packageName, (String) newValue);
+                    return true;
+                });
+    }
+}

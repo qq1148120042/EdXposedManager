@@ -1,0 +1,26 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        applicationId "org.ks.tool.manager"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "stub"
+        //noinspection GroovyAccessibility
+        project.ext.set("archivesBaseName", "EdXposed")
+    }
+
+    buildTypes {
+        release {
+            zipAlignEnabled true
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+}

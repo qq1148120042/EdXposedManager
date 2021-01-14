@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <external-cache-path
+        name="downloads"
+        path="downloads" />
+    <external-path
+        name="download"
+        path="Download" />
+    <!--suppress AndroidElementNotAllowed -->
+    <root-path
+        name="log"
+        path="/data/user_de/0/org.ks.tool.manager/log" />
+</paths>

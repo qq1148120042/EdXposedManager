@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name" translatable="false">Ks Manager</string>
+    <string name="upgrade_msg">Upgrade to full EdXposed Manager to finish the setup. Download and install?</string>
+    <string name="status_text">EdXposed status</string>
+    <string name="status_0">Not (properly) Installed</string>
+    <string name="status_1">Inactive</string>
+    <string name="status_2">Activated</string>
+</resources>

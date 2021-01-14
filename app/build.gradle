@@ -1,0 +1,69 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.android.gms.oss-licenses-plugin'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 30
+
+    lintOptions {
+        abortOnError false
+    }
+
+    defaultConfig {
+        applicationId "org.ks.tool.manager"
+        minSdkVersion 24
+        //noinspection OldTargetApi
+        targetSdkVersion 27
+        versionCode 45759
+        versionName "4.6.0-pre"
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = "EdXposedManager-${defaultConfig.versionName}-${defaultConfig.versionCode}-${applicationId}-${buildType.name}.apk"
+        }
+    }
+    buildTypes {
+        release {
+            zipAlignEnabled true
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-project.txt'
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            zipAlignEnabled true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+}
+
+dependencies {
+    implementation "com.google.android.material:material:1.2.1"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.browser:browser:1.3.0"
+    //noinspection KtxExtensionAvailable
+    implementation "androidx.preference:preference:1.1.1"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    //noinspection KtxExtensionAvailable
+    implementation "androidx.fragment:fragment:1.2.5"
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.afollestad.material-dialogs:commons:0.9.0.2'
+    implementation 'com.github.mtotschnig:StickyListHeaders:2.7.1'
+    implementation "com.github.topjohnwu.libsu:core:2.5.0"
+    implementation 'com.squareup.picasso:picasso:2.8'
+    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
+    implementation 'com.annimon:stream:1.2.1'
+    implementation 'com.google.code.gson:gson:2.8.6'
+//    compileOnly 'com.android.ks.tool:api:82'
+    compileOnly files('libs/ks-api.jar')
+    implementation "androidx.core:core-ktx:1.3.2"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.4.10"
+    implementation "androidx.dynamicanimation:dynamicanimation:1.0.0"
+}
